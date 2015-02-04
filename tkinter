@@ -2,6 +2,11 @@ import Tkinter
 from Tkinter import * 
 import tkMessageBox
 a=[]
+dV=5.5
+mV=1
+shift=10
+number1=0
+str1=""
 # Code to add widgets will go here...
 top = Tkinter.Tk()
 top.geometry("800x500+100+100")
@@ -258,8 +263,9 @@ def wtn(x):
             '?': 84,
         }.get(x, 53)
 def EncCallBack():
+    message = Message.get()
     for letter in message:
-        message = Message.get()
+        
         number = wtn(letter)
         number = number/dV
         number=number*mV
@@ -268,23 +274,24 @@ def EncCallBack():
 
 def DeEncCallBack():
     
-    for number in message:
-        message=Enc.get()
+    #a=float(Enc.get())
+
+    for number in a:
         number1=number
         number1=number1*dV
         number1=number1/mV
         number1= ntw(number1)
         a.append(number1)
         str1=str1+number1
-
+    tkMessageBox.showinfo("UnEncrypted Message:",str1)
 
 
 
 
 b1=Button(top,text="Encrypt",command= EncCallBack)
 b1.pack(side=LEFT)
-
+message=""
 b2=Button(top,text="De-Encrypt",command=DeEncCallBack)
 b2.pack(side=RIGHT)
-
+message=""
 top.mainloop()
